@@ -1,12 +1,6 @@
 package com.crud.sdk.jpa;
 
-import java.time.LocalDateTime;
-import java.util.Objects;
-
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Version;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.Where;
@@ -14,11 +8,14 @@ import org.springframework.data.annotation.Transient;
 import org.springframework.data.domain.AbstractAggregateRoot;
 import org.springframework.data.domain.Persistable;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Version;
+import java.time.LocalDateTime;
+import java.util.Objects;
 
 @MappedSuperclass
-@Where(clause = "deleted=false")
-public abstract class AbstractEntitySoftDeleted<A extends AbstractAggregateRoot<A>, K>
+public abstract class AbstractEntity<A extends AbstractAggregateRoot<A>, K>
     extends AbstractAggregateRoot<A> implements Persistable<K> {
 
     @Transient
@@ -39,16 +36,9 @@ public abstract class AbstractEntitySoftDeleted<A extends AbstractAggregateRoot<
     @Column(name = "row_updated_at")
     protected LocalDateTime entityUpdatedAt;
 
-    @JsonIgnore
-    protected boolean deleted;
-
     @Override
     public boolean isNew() {
         return entityVersion == 0;
-    }
-
-    protected void markAsDeleted() {
-        deleted = true;
     }
 
     @Override
@@ -68,7 +58,7 @@ public abstract class AbstractEntitySoftDeleted<A extends AbstractAggregateRoot<
             return false;
 
         @SuppressWarnings("unchecked")
-        AbstractEntitySoftDeleted<A, K> other = (AbstractEntitySoftDeleted<A, K>) obj;
+        AbstractEntity<A, K> other = (AbstractEntity<A, K>) obj;
 
         return Objects.equals(getId(), other.getId());
     }
