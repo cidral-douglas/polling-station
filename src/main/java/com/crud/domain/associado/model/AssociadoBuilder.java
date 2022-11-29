@@ -25,6 +25,11 @@ public class AssociadoBuilder {
         return this;
     }
 
+    public AssociadoBuilder cpf(CPF cpf) {
+        this.cpf = cpf;
+        return this;
+    }
+
 
     public AssociadoBuilder cpfDuplicatedConstraint(Predicate<CPF> cpfConstraint) {
         this.cpfConstraint = cpfConstraint;

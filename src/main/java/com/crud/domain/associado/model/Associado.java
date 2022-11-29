@@ -44,6 +44,7 @@ public class Associado extends AbstractEntitySoftDeleted<Associado, AssociadoId>
 
         this.id = requireNonNull(builder.id);
         this.nome = requireNonNull(builder.nome);
+        this.cpf = requireNonNull(builder.cpf);
 
         registerEvent(AssociadoRegistrado.from(this));
     }
