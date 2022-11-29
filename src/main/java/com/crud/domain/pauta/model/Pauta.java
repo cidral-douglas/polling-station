@@ -48,7 +48,7 @@ public class Pauta extends AbstractEntity<Pauta, PautaId> {
         this.id = requireNonNull(builder.id);
         this.descricao = requireNonNull(builder.descricao);
         this.pergunta = requireNonNull(builder.pergunta);
-        this.dataLimite = requireNonNullElse(builder.dataLimite, this.entityCreatedAt.plusMinutes(1));
+        this.dataLimite = requireNonNullElse(builder.dataLimite, LocalDateTime.now().plusMinutes(1));
 
         registerEvent(PautaRegistrada.from(this));
     }

@@ -27,11 +27,9 @@ public class Votacao extends AbstractEntity<Votacao, VotacaoId> {
     @AttributeOverride(name = VotacaoId.ATTR, column = @Column(name = "id"))
     private VotacaoId id;
 
-    @EmbeddedId
     @AttributeOverride(name = PautaId.ATTR, column = @Column(name = "pauta_id"))
     private PautaId pautaId;
 
-    @EmbeddedId
     @AttributeOverride(name = AssociadoId.ATTR, column = @Column(name = "associado_id"))
     private AssociadoId associadoId;
 
