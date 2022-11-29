@@ -6,6 +6,8 @@ import org.springframework.data.repository.Repository;
 
 public interface PautaDomainRepository extends Repository<Pauta, PautaId> {
 
+    boolean existsById(PautaId id);
+
     void save(Pauta pauta);
 
 }

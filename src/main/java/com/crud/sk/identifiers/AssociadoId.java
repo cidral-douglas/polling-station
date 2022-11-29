@@ -10,6 +10,7 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.UUID;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 import static java.util.Objects.nonNull;
 import static java.util.Objects.requireNonNull;
@@ -53,8 +54,8 @@ public final class AssociadoId extends SimpleValueObject<UUID> implements Serial
         return new AssociadoIdNaoEncontradoException();
     }
 
-    public void applyExistsConstraint(Function<AssociadoId, Boolean> constraint) {
-        if (isValid() && (!constraint.apply(this))) {
+    public void applyExistsConstraint(Predicate<AssociadoId> constraint) {
+        if (isValid() && (!constraint.test(this))) {
             throw notFoundException();
         }
     }
