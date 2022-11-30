@@ -38,10 +38,18 @@ public final class CPF extends SimpleValueObject<String> implements Serializable
 
     private CPF(String value) {
         this.value = requireNonNull(value).trim();
+        verificaSeCpfValido();
     }
 
     private CPF(Long value) {
         this.value = requireNonNull(value).toString();
+        verificaSeCpfValido();
+    }
+
+    private void verificaSeCpfValido() {
+        if(!this.value.matches("\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}")) {
+            throw new CPFInvalidoException();
+        }
     }
 
     @JsonCreator
@@ -65,6 +73,12 @@ public final class CPF extends SimpleValueObject<String> implements Serializable
     public static class CPFDuplicadoException extends BusinessError {
         public CPFDuplicadoException() {
             super("Já existe um associado com esse cpf!");
+        }
+    }
+
+    public static class CPFInvalidoException extends BusinessError {
+        public CPFInvalidoException() {
+            super("Cpf inválido!");
         }
     }
 }
