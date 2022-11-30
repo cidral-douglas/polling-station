@@ -6,10 +6,17 @@ import com.crud.domain.associado.usecase.RegistrarAssociadoUseCase;
 import com.crud.domain.associado.usecase.RegistrarAssociadoUseCase.RegistrarAssociado;
 import com.crud.domain.associado.usecase.RemoverAssociadoUseCase;
 import com.crud.domain.associado.usecase.RemoverAssociadoUseCase.RemoverAssociado;
+import com.crud.query.associado.app.AssociadoQueryAppService;
+import com.crud.query.associado.projection.Associado;
+import com.crud.query.associado.projection.ListagemAssociado;
 import com.crud.sk.identifiers.AssociadoId;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
@@ -24,6 +31,7 @@ public class AssociadoController {
     private final RegistrarAssociadoUseCase registrarAssociadoUseCase;
     private final AlterarAssociadoUseCase alterarAssociadoUseCase;
     private final RemoverAssociadoUseCase removerAssociadoUseCase;
+    private final AssociadoQueryAppService associadoQueryAppService;
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> registrar(@RequestBody RegistrarAssociado cmd) {
@@ -43,6 +51,16 @@ public class AssociadoController {
     @DeleteMapping(path = "/{id}")
     public void remover(@PathVariable AssociadoId id){
         removerAssociadoUseCase.handle(RemoverAssociado.from(id));
+    }
+
+    @GetMapping(path = "/{id}")
+    public Associado buscaPorId(@PathVariable UUID id) {
+        return associadoQueryAppService.recuperarAssociado(id);
+    }
+
+    @GetMapping
+    public List<ListagemAssociado> listagem(Pageable pageable) {
+        return associadoQueryAppService.listar(pageable).getContent();
     }
 
 }
