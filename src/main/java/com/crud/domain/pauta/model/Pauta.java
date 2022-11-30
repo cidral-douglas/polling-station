@@ -38,6 +38,9 @@ public class Pauta extends AbstractEntity<Pauta, PautaId> {
     @Column(name = "data_limite")
     private LocalDateTime dataLimite;
 
+    @Enumerated(EnumType.STRING)
+    private StatusPauta status;
+
 
     public static PautaBuilder builder() {
         return new PautaBuilder();
@@ -49,7 +52,12 @@ public class Pauta extends AbstractEntity<Pauta, PautaId> {
         this.descricao = requireNonNull(builder.descricao);
         this.pergunta = requireNonNull(builder.pergunta);
         this.dataLimite = requireNonNullElse(builder.dataLimite, LocalDateTime.now().plusMinutes(1));
+        this.status = StatusPauta.ABERTA;
 
         registerEvent(PautaRegistrada.from(this));
+    }
+
+    public void fecharPauta() {
+        this.status = StatusPauta.FECHADA;
     }
 }

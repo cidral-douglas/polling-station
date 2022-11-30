@@ -8,7 +8,7 @@ CREATE TABLE associado (
     deleted BOOL NOT NULL DEFAULT false,
 
     nome VARCHAR(255) NOT NULL,
-    cpf VARCHAR(255) NOT NULL,
+    cpf VARCHAR(11) NOT NULL,
 
     CONSTRAINT associado_pkey PRIMARY KEY (id)
 );
@@ -24,6 +24,7 @@ CREATE TABLE pauta (
    descricao VARCHAR(255) NOT NULL,
    pergunta VARCHAR(255) NOT NULL,
    data_limite TIMESTAMP NOT NULL,
+   status VARCHAR(7) NOT NULL,
 
    CONSTRAINT pauta_pkey PRIMARY KEY (id)
 );
