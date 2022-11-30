@@ -2,13 +2,14 @@ package com.crud.adapter.in.api;
 
 import com.crud.domain.votacao.usecase.RegistrarVotacaoUseCase;
 import com.crud.domain.votacao.usecase.RegistrarVotacaoUseCase.RegistrarVotacao;
+import com.crud.query.votacao.app.VotacaoQueryAppService;
+import com.crud.query.votacao.projection.ContagemVotos;
 import com.crud.sk.identifiers.VotacaoId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
@@ -21,6 +22,7 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 public class VotacaoController {
 
     private final RegistrarVotacaoUseCase registrarVotacaoUseCase;
+    private final VotacaoQueryAppService votacaoQueryAppService;
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> registrar(@RequestBody RegistrarVotacao cmd) {
@@ -30,6 +32,11 @@ public class VotacaoController {
         return ResponseEntity.created(fromCurrentRequest()
             .path("/").path(id.asString()).build().toUri())
             .build();
+    }
+
+    @GetMapping(path = "/{pautaId}")
+    public ContagemVotos getContagemVotosByPauta(@PathVariable UUID pautaId) {
+        return votacaoQueryAppService.recuperarContagemVotosByPauta(pautaId);
     }
 
 }
