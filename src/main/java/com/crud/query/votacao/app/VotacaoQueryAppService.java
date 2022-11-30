@@ -1,6 +1,7 @@
 package com.crud.query.votacao.app;
 
 import com.crud.query.votacao.projection.ContagemVotos;
+import com.crud.query.votacao.projection.ResultadoVotacao;
 import com.crud.query.votacao.repository.VotacaoQueryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,10 @@ public class VotacaoQueryAppService {
 
     public ContagemVotos recuperarContagemVotosByPauta(UUID pautaId) {
         return votacaoQueryRepository.getCotagemVotosByPautaId(pautaId);
+    }
+
+    public ResultadoVotacao recuperarResultadoVotacaoByPauta(UUID pautaId) {
+        return votacaoQueryRepository.recuperarResultadoVotacaoByPautaId(pautaId);
     }
 
 }

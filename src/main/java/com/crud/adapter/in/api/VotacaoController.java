@@ -4,6 +4,7 @@ import com.crud.domain.votacao.usecase.RegistrarVotacaoUseCase;
 import com.crud.domain.votacao.usecase.RegistrarVotacaoUseCase.RegistrarVotacao;
 import com.crud.query.votacao.app.VotacaoQueryAppService;
 import com.crud.query.votacao.projection.ContagemVotos;
+import com.crud.query.votacao.projection.ResultadoVotacao;
 import com.crud.sk.identifiers.VotacaoId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -34,9 +35,14 @@ public class VotacaoController {
             .build();
     }
 
-    @GetMapping(path = "/{pautaId}")
+    @GetMapping(path = "/contagem-de-votos/{pautaId}")
     public ContagemVotos getContagemVotosByPauta(@PathVariable UUID pautaId) {
         return votacaoQueryAppService.recuperarContagemVotosByPauta(pautaId);
+    }
+
+    @GetMapping(path = "/resultado-votacao/{pautaId}")
+    public ResultadoVotacao recuperarResultadoVotacaoByPauta(@PathVariable UUID pautaId) {
+        return votacaoQueryAppService.recuperarResultadoVotacaoByPauta(pautaId);
     }
 
 }
