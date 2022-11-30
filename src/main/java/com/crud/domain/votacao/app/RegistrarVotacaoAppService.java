@@ -29,6 +29,7 @@ public class RegistrarVotacaoAppService implements RegistrarVotacaoUseCase {
                 .associadoId(command.getAssociadoId())
                 .associadoIdExistsConstraint(associadoDomainRepository::existsById)
                 .voto(command.getVoto())
+                .pautaIdAndAssociadoIdExistsConstraint(repository::existsByPautaIdAndAssociadoId)
                 .build();
 
         repository.save(votacao);
