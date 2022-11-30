@@ -2,7 +2,15 @@ package com.crud.query.votacao.projection;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.time.LocalDateTime;
+
 public interface ResultadoVotacao {
+
+    @JsonIgnore
+    String getStatus();
+
+    @JsonIgnore
+    LocalDateTime getDataLimite();
 
     @JsonIgnore
     Long getVotosNao();
@@ -11,13 +19,17 @@ public interface ResultadoVotacao {
     Long getVotosSim();
 
     default String getResultado() {
-        int compareValue = getVotosSim().compareTo(getVotosNao());
-        if(compareValue > 0) {
-            return "Há mais votos SIM";
-        } else if (compareValue < 0) {
-            return "Há mais votos NÃO";
+        if(getStatus().equals("ABERTA") || LocalDateTime.now().isBefore(getDataLimite())) {
+            return "A votação ainda está aberta";
         } else {
-            return "Houve um EMPATE";
+            int compareValue = getVotosSim().compareTo(getVotosNao());
+            if(compareValue > 0) {
+                return "Há mais votos SIM";
+            } else if (compareValue < 0) {
+                return "Há mais votos NÃO";
+            } else {
+                return "Houve um EMPATE";
+            }
         }
     }
 

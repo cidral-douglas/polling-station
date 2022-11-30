@@ -13,7 +13,7 @@ public class FecharPautaPublisher {
   @Autowired
   private KafkaTemplate<String, String> kafkaTemplate;
 
-  public void eviarMensagem(String message) {
+  public void enviarMensagem(String message) {
 
     ListenableFuture<SendResult<String, String>> future =
         kafkaTemplate.send("pautas", message);

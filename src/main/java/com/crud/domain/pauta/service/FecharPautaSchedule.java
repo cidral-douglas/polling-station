@@ -30,7 +30,7 @@ public class FecharPautaSchedule {
       if(LocalDateTime.now().isAfter(pauta.getDataLimite())) {
         pauta.fecharPauta();
         repository.save(pauta);
-        fecharPautaPublisher.eviarMensagem("Pauta " + pauta.getId().getValue() + " foi fechada!");
+        fecharPautaPublisher.enviarMensagem("Pauta " + pauta.getId().getValue() + " foi fechada!");
       }
     });
   }
