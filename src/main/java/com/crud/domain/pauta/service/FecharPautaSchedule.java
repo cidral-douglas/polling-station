@@ -4,6 +4,8 @@ import com.crud.domain.pauta.model.Pauta;
 import com.crud.domain.pauta.model.StatusPauta;
 import com.crud.domain.pauta.repository.PautaDomainRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +19,7 @@ import java.util.List;
 public class FecharPautaSchedule {
 
   private final PautaDomainRepository repository;
+  private final FecharPautaPublisher fecharPautaPublisher;
 
   private final long CINCO_MINUTOS = (1000 * 60 * 5);
 
@@ -27,6 +30,7 @@ public class FecharPautaSchedule {
       if(LocalDateTime.now().isAfter(pauta.getDataLimite())) {
         pauta.fecharPauta();
         repository.save(pauta);
+        fecharPautaPublisher.eviarMensagem("Pauta " + pauta.getId().getValue() + " foi fechada!");
       }
     });
   }
