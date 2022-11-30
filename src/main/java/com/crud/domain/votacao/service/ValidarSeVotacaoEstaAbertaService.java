@@ -24,7 +24,9 @@ public class ValidarSeVotacaoEstaAbertaService {
   }
 
   private static class PautaJaFechadaParaVotacaoException extends BusinessError {
-    private static final long serialVersionUID = 991370116545156345L;
+    private PautaJaFechadaParaVotacaoException() {
+      super("Pauta já está fechada para votação!");
+    }
   }
 
 }

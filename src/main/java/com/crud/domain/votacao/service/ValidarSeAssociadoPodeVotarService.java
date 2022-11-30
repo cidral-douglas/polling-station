@@ -26,6 +26,8 @@ public class ValidarSeAssociadoPodeVotarService {
   }
 
   private static class AssociadoNaoPodeVotarException extends BusinessError {
-    private static final long serialVersionUID = 991370116545156345L;
+    private AssociadoNaoPodeVotarException() {
+      super("Associado não pode votar!");
+    }
   }
 }

@@ -68,10 +68,10 @@ public final class AssociadoId extends SimpleValueObject<UUID> implements Serial
         return !AssociadoId.NAO_INFORMADO.equals(value);
     }
 
-//    @ApiNotFound(value = "ProdutoIdNaoEncontradoException")
+
     public static class AssociadoIdNaoEncontradoException extends BusinessError {
-
-        private static final long serialVersionUID = 991370116545156345L;
-
+        public AssociadoIdNaoEncontradoException() {
+            super("Associado não encontrado!");
+        }
     }
 }

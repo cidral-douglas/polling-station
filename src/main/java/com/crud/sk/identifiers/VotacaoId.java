@@ -67,10 +67,10 @@ public final class VotacaoId extends SimpleValueObject<UUID> implements Serializ
         return !VotacaoId.NAO_INFORMADO.equals(value);
     }
 
-//    @ApiNotFound(value = "ProdutoIdNaoEncontradoException")
+
     public static class VotacaoIdNaoEncontradoException extends BusinessError {
-
-        private static final long serialVersionUID = 991370116545156345L;
-
+        public VotacaoIdNaoEncontradoException() {
+            super("Votação não encontrada!");
+        }
     }
 }

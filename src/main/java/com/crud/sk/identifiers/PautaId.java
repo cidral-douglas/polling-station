@@ -68,10 +68,9 @@ public final class PautaId extends SimpleValueObject<UUID> implements Serializab
         return !PautaId.NAO_INFORMADO.equals(value);
     }
 
-//    @ApiNotFound(value = "ProdutoIdNaoEncontradoException")
     public static class PautaIdNaoEncontradoException extends BusinessError {
-
-        private static final long serialVersionUID = 991370116545156345L;
-
+        public PautaIdNaoEncontradoException() {
+            super("Pauta não encontrada!");
+        }
     }
 }

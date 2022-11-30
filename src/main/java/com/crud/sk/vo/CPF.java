@@ -62,10 +62,9 @@ public final class CPF extends SimpleValueObject<String> implements Serializable
             throw duplicatedException();
     }
 
-//    @ApiBadRequest(value = "CodigoExternoDuplicadoException")
     public static class CPFDuplicadoException extends BusinessError {
-
-        private static final long serialVersionUID = 991370116545156345L;
-
+        public CPFDuplicadoException() {
+            super("Já existe um associado com esse cpf!");
+        }
     }
 }

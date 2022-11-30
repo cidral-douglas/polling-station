@@ -75,7 +75,9 @@ public class VotacaoBuilder {
     }
 
     private static class AssociadoJaVotouNessaPautaException extends BusinessError {
-        private static final long serialVersionUID = 991370116545156345L;
+        private AssociadoJaVotouNessaPautaException() {
+            super("Associado já votou nessa pauta!");
+        }
     }
 
 }
