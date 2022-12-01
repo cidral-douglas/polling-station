@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,8 +19,6 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RequiredArgsConstructor
-
-//@ApiGuideline
 @RestController
 @RequestMapping(path = "/api/v1/pautas", produces = APPLICATION_JSON_VALUE)
 public class PautaController {
@@ -28,7 +27,7 @@ public class PautaController {
     private final PautaQueryAppService pautaQueryAppService;
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> registrar(@RequestBody RegistrarPauta cmd) {
+    public ResponseEntity<Void> registrar(@Valid @RequestBody RegistrarPauta cmd) {
 
         PautaId id = registrarPautaUseCase.handle(cmd);
 

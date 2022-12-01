@@ -24,15 +24,15 @@ public interface RegistrarVotacaoUseCase {
     class RegistrarVotacao {
 
         @Valid
-        @NotNull(message = "{Votacao.pautaId.NotNull}")
+        @NotNull(message = "Id da Pauta deve ser preenchida")
         PautaId pautaId;
 
         @Valid
-        @NotNull(message = "{Votacao.associadoId.NotNull}")
+        @NotNull(message = "Id do Associado deve ser preenchida")
         AssociadoId associadoId;
 
         @Valid
-        @NotNull(message = "{Votacao.voto.NotNull}")
+        @NotNull(message = "Voto deve ser preenchido")
         Voto voto;
 
     }

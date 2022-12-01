@@ -31,8 +31,8 @@ public final class Descricao extends SimpleValueObject<String> implements Serial
     public static final Descricao NAO_INFORMADA = new Descricao("");
     public static final String ATTR = "value";
 
-    @Size(max = 255, message = "{Descricao.Size}")
-    @NotBlank(message = "{Descricao.NotBlank}")
+    @Size(max = 255, message = "Tamanho máximo de 255 caracteres")
+    @NotBlank(message = "Descrição deve ser preenchida")
     @JsonValue
     @Column(name = "descricao")
     private final String value;

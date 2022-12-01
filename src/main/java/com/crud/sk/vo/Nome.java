@@ -29,8 +29,8 @@ public final class Nome extends SimpleValueObject<String> implements Serializabl
     public static final Nome NAO_INFORMADA = new Nome("");
     public static final String ATTR = "value";
 
-    @Size(max = 255, message = "{Nome.Size}")
-    @NotBlank(message = "{Nome.NotBlank}")
+    @Size(max = 255, message = "Tamanho máximo de 255 caracteres")
+    @NotBlank(message = "Descrição deve ser preenchida")
     @JsonValue
     @Column(name = "nome")
     private final String value;

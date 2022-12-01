@@ -27,7 +27,7 @@ public interface AlterarAssociadoUseCase {
         AssociadoId id;
 
         @Valid
-        @NotNull(message = "{Negociacao.Produto.descricao.NotNull}")
+        @NotNull(message = "Nome deve ser preenchido")
         Nome nome;
 
 

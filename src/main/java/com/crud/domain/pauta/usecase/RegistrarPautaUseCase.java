@@ -24,15 +24,15 @@ public interface RegistrarPautaUseCase {
     class RegistrarPauta {
 
         @Valid
-        @NotNull(message = "{Pauta.descricao.NotNull}")
+        @NotNull(message = "Descrição deve ser preenchida")
         Descricao descricao;
 
         @Valid
-        @NotNull(message = "{Pauta.pergunta.NotNull}")
+        @NotNull(message = "Pergunta deve ser preenchida")
         Pergunta pergunta;
 
         @Valid
-        @NotNull(message = "{Pauta.dataLimite.NotNull}")
+        @NotNull(message = "Data limite deve ser preenchida")
         LocalDateTime dataLimite;
 
     }

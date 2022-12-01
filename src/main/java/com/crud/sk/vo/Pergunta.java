@@ -29,8 +29,8 @@ public final class Pergunta extends SimpleValueObject<String> implements Seriali
     public static final Pergunta NAO_INFORMADA = new Pergunta("");
     public static final String ATTR = "value";
 
-    @Size(max = 255, message = "{Pergunta.Size}")
-    @NotBlank(message = "{Pergunta.NotBlank}")
+    @Size(max = 255, message = "Tamanho máximo de 255 caracteres")
+    @NotBlank(message = "Descrição deve ser preenchida")
     @JsonValue
     @Column(name = "pergunta")
     private final String value;

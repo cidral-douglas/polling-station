@@ -9,6 +9,8 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.Valid;
+
 @RequiredArgsConstructor
 @Service
 @Transactional
@@ -17,7 +19,7 @@ public class RegistrarPautaAppService implements RegistrarPautaUseCase {
     private final PautaDomainRepository repository;
 
     @Override
-    public PautaId handle(RegistrarPauta command) {
+    public PautaId handle(@Valid RegistrarPauta command) {
 
         Pauta pauta = Pauta.builder()
                 .descricao(command.getDescricao())

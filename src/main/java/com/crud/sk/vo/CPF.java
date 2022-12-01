@@ -16,6 +16,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.function.Predicate;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 
 @Getter
@@ -30,8 +31,8 @@ public final class CPF extends SimpleValueObject<String> implements Serializable
     public static final CPF NAO_INFORMADO = new CPF("");
     public static final String ATTR = "value";
 
-    @Size(max = 11, message = "{CPF.Size}")
-    @NotBlank(message = "{CPF.NotBlank}")
+    @Size(max = 11, min = 11, message = "Cpf deve ter 11 dígitos")
+    @NotBlank(message = "Cpf não pode ser vazio")
     @JsonValue
     @Column(name = "cpf")
     private final String value;
@@ -47,8 +48,10 @@ public final class CPF extends SimpleValueObject<String> implements Serializable
     }
 
     private void verificaSeCpfValido() {
-        if(!this.value.matches("\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}")) {
-            throw new CPFInvalidoException();
+        if(!isNull(value) && !value.equals("")) {
+            if(!value.matches("\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}")) {
+                throw new CPFInvalidoException();
+            }
         }
     }
 

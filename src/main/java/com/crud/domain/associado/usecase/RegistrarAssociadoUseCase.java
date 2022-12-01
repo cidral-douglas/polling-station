@@ -23,11 +23,11 @@ public interface RegistrarAssociadoUseCase {
     class RegistrarAssociado {
 
         @Valid
-        @NotNull(message = "{Associado.nome.NotNull}")
+        @NotNull(message = "Nome deve ser preenchido")
         Nome nome;
 
         @Valid
-        @NotNull(message = "{Associado.cpf.NotNull}")
+        @NotNull(message = "Cpf deve ser preenchido")
         CPF cpf;
 
     }
