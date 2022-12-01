@@ -39,14 +39,24 @@ O banco de dados escolhido foi o PostgreSQL.
 ## Configuração Kafka
 * Baixar Kafka pelo link: https://kafka.apache.org/downloads
 * Versão utilizada: 2.7.2 Binary Scala 2.13;
-* Rodar zookeeper: `C:\kafka\kafka_2.13-2.7.2\bin\windows>zookeeper-server-start.bat ../../config/zookeeper.properties`;
-* Rodar kafka : `C:\kafka\kafka_2.13-2.7.2\bin\windows>kafka-server-start.bat ../../config/server.properties`;
-* Criar Topic: `C:\kafka\kafka_2.13-2.7.2\bin\windows>kafka-topics.bat --bootstrap-server localhost:9092 --topic pautas --create --partitions 1 `.
+* Rodar zookeeper: `C:\kafka\kafka_2.13-2.7.2\bin\windows>zookeeper-server-start.bat ../../config/zookeeper.properties` -> comando para windows;
+* Rodar kafka : `C:\kafka\kafka_2.13-2.7.2\bin\windows>kafka-server-start.bat ../../config/server.properties` -> comando para windows;
+* Criar Topic: `C:\kafka\kafka_2.13-2.7.2\bin\windows>kafka-topics.bat --bootstrap-server localhost:9092 --topic pautas --create --partitions 1` -> comando para windows.
 
 ## Swagger
 Todos os endpoints foram disponibilizados via Swagger no link: http://localhost:8080/swagger-ui.html
 
 ![image](https://user-images.githubusercontent.com/70900973/204953658-6b7a87fb-2ce2-4ea4-b926-52a9016d94b9.png)
+
+#### Associado
+![image](https://user-images.githubusercontent.com/70900973/204961991-097cc47c-50cf-447f-ac54-d3de188ab2bf.png)
+
+#### Pauta
+![image](https://user-images.githubusercontent.com/70900973/204962034-7eb6912c-bd67-44a1-8f2f-f213c04471cd.png)
+
+#### Votacao
+![image](https://user-images.githubusercontent.com/70900973/204962068-c661bcde-f174-4b4a-b23b-bf4b5f057c58.png)
+
 
 ## Arquitetura do Projeto
 O projeto foi criado utilizando Java 11 com Spring Boot. A arquitetura escolhida foi uma mistura do uso de DDD, Clean Architecture, Ports and Adapters e Builder Pattern.
