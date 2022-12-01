@@ -36,9 +36,9 @@ public class RegistrarAssociadoAppServiceUnitTest {
         .nome(nome)
         .cpf(cpf)
         .build();
-    AssociadoId returnedAssocieadoId = registrarAssociadoAppService.handle(registrarAssociado);
+    AssociadoId returnedAssociadoId = registrarAssociadoAppService.handle(registrarAssociado);
     Mockito.verify(associadoDomainRepository).save(Mockito.any(Associado.class));
-    Assertions.assertNotNull(returnedAssocieadoId);
+    Assertions.assertNotNull(returnedAssociadoId);
   }
 
   @Test

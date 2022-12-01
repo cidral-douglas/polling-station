@@ -30,13 +30,6 @@ public interface RegistrarAssociadoUseCase {
         @NotNull(message = "Cpf deve ser preenchido")
         CPF cpf;
 
-        public RegistrarAssociado from() {
-            return RegistrarAssociado.builder()
-                .nome(nome)
-                .cpf(cpf)
-                .build();
-        }
-
     }
 
     @Value
