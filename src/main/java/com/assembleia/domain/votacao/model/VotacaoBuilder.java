@@ -73,7 +73,7 @@ public class VotacaoBuilder {
         }
     }
 
-    private static class AssociadoJaVotouNessaPautaException extends BusinessError {
+    public static class AssociadoJaVotouNessaPautaException extends BusinessError {
         private AssociadoJaVotouNessaPautaException() {
             super("Associado já votou nessa pauta!");
         }

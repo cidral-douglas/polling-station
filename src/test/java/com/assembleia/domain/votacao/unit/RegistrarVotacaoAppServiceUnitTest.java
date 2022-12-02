@@ -6,12 +6,12 @@ import com.assembleia.domain.pauta.model.Pauta;
 import com.assembleia.domain.pauta.repository.PautaDomainRepository;
 import com.assembleia.domain.votacao.app.RegistrarVotacaoAppService;
 import com.assembleia.domain.votacao.model.Votacao;
+import com.assembleia.domain.votacao.model.VotacaoBuilder.AssociadoJaVotouNessaPautaException;
 import com.assembleia.domain.votacao.model.Voto;
 import com.assembleia.domain.votacao.repository.VotacaoDomainRepository;
 import com.assembleia.domain.votacao.service.ValidarSeAssociadoPodeVotarService;
 import com.assembleia.domain.votacao.service.ValidarSeVotacaoEstaAbertaService;
 import com.assembleia.domain.votacao.usecase.RegistrarVotacaoUseCase.RegistrarVotacao;
-import com.assembleia.sk.identifiers.PautaId;
 import com.assembleia.sk.identifiers.VotacaoId;
 import com.assembleia.sk.vo.CPF;
 import com.assembleia.sk.vo.Descricao;
@@ -85,6 +85,20 @@ public class RegistrarVotacaoAppServiceUnitTest {
     VotacaoId returnedVotacaoId = registrarVotacaoAppService.handle(registrarVotacao);
     Mockito.verify(votacaoDomainRepository).save(Mockito.any(Votacao.class));
     Assertions.assertNotNull(returnedVotacaoId);
+  }
+
+  @Test
+  public void deveValidarVotoDuplicadoDeUmAssociadoEmUmaPauta() {
+    RegistrarVotacao registrarVotacao = RegistrarVotacao.builder()
+        .associadoId(associado.getId())
+        .pautaId(pauta.getId())
+        .voto(Voto.SIM)
+        .build();
+    Assertions.assertThrows(AssociadoJaVotouNessaPautaException.class, () -> {
+      registrarVotacaoAppService.handle(registrarVotacao);
+      Mockito.when(votacaoDomainRepository.existsByPautaIdAndAssociadoId(pauta.getId(), associado.getId())).thenReturn(true);
+      registrarVotacaoAppService.handle(registrarVotacao);
+    });
   }
 
 }

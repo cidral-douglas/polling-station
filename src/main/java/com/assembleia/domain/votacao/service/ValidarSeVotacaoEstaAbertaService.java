@@ -23,7 +23,7 @@ public class ValidarSeVotacaoEstaAbertaService {
     }
   }
 
-  private static class PautaJaFechadaParaVotacaoException extends BusinessError {
+  public static class PautaJaFechadaParaVotacaoException extends BusinessError {
     private PautaJaFechadaParaVotacaoException() {
       super("Pauta já está fechada para votação!");
     }
