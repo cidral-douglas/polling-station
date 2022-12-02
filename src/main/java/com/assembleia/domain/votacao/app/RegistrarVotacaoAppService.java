@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
 @RequiredArgsConstructor
 @Service
@@ -30,7 +31,7 @@ public class RegistrarVotacaoAppService implements RegistrarVotacaoUseCase {
 
         Associado associado = associadoDomainRepository.get(command.getAssociadoId());
 
-        validarSeAssociadoPodeVotarService.executar(associado.getCpf());
+        validarSeAssociadoPodeVotarService.executar(associado.getCpf(), new RestTemplate());
         validarSeVotacaoEstaAbertaService.executar(command.getPautaId());
 
         Votacao votacao = Votacao.builder()
