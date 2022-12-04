@@ -1,4 +1,4 @@
-package com.assembleia.domain.pauta.service;
+package com.assembleia.adapter.in.publisher;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
