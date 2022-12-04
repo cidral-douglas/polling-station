@@ -13,4 +13,6 @@ public interface Pauta {
 
     LocalDateTime getDataLimite();
 
+    String getStatus();
+
 }

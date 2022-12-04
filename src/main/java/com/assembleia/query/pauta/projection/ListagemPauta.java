@@ -13,4 +13,6 @@ public interface ListagemPauta {
 
     LocalDateTime getDataLimite();
 
+    String getStatus();
+
 }

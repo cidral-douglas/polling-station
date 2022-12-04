@@ -36,6 +36,8 @@ public class PautaQuery extends AbstractAnemicEntity<UUID> {
     @Column(name = "data_limite")
     private LocalDateTime dataLimite;
 
+    private String status;
+
     @Column(name = "row_updated_at")
     private ZonedDateTime rowUpdatedAt;
 
